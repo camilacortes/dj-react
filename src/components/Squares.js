@@ -12,6 +12,11 @@ class Squares extends React.Component{
     this.partyDj = this.partyDj.bind(this)
     this.leftDj = this.leftDj.bind(this)
     this.rightDj = this.rightDj.bind(this)
+    this.bigDjOne = this.bigDjOne.bind(this)
+    this.bigDjTwo = this.bigDjTwo.bind(this)
+    this.bigDjThree = this.bigDjThree.bind(this)
+    this.bigDjFour = this.bigDjFour.bind(this)
+
   }
   
   djSmallClick(){
@@ -45,23 +50,78 @@ partyDj(){
   })
 }
 
-
 leftDj(){
-  console.log('leftDj')
+  this.setState(prevState =>{
+    return{
+      colors: prevState.colors = ['purple', 'purple', 'blue', 'black']
+    }
+  })
 }
 
 rightDj(){
-  console.log('right')
+  this.setState(prevState =>{
+    if(this.state.colors[2] !== 'blue'){
+      return{
+        colors: prevState.colors = ['purple', 'purple', 'white', 'blue']
+      }
+    } else {
+      return{
+         colors: prevState.colors = ['purple', 'purple', 'blue', 'blue']
+      }
+    }
+  })
 }
+
+bigDjOne(){
+  this.setState(prevState =>{
+    return{
+      colors: prevState.colors = ['red', 'blue', 'red', 'blue']
+    }
+  })
+}
+
+bigDjTwo(){
+  this.setState(prevState =>{
+    return{
+      colors: prevState.colors = ['white', 'blue', 'white', 'blue']
+    }
+  })
+
+}
+
+bigDjThree(){
+  this.setState(prevState =>{
+    return{
+      colors: prevState.colors = ['purple', 'blue', 'blue', 'purple']
+    }
+  })
+
+}
+
+bigDjFour(){
+  // where audio would go but it doesn't work with the .play() func
+  // const audio = document.getElementsByClassName('audio');
+  // audio.play();
+  this.setState(prevState =>{
+    return{
+      colors: prevState.colors = ['blue', 'red', 'red', 'blue']
+    }
+  })
+
+}
+
+
+
+
 
     render(){
       const createSquare = this.state.colors.map((color, index) => (
-        <SquareRender key={index} colors={color}  />
+        <SquareRender key={index} colors={color}/>
      ))
       return(
         <div className="container">
           {createSquare}
-          <Buttons colors={this.state.colors} djSmallClick={this.djSmallClick} partyDj={this.partyDj} leftDj ={this.leftDj} rightDj={this.rightDj}/>
+          <Buttons colors={this.state.colors} djSmallClick={this.djSmallClick} partyDj={this.partyDj} leftDj ={this.leftDj} rightDj={this.rightDj} bigDjOne={this.bigDjOne} bigDjTwo={this.bigDjTwo} bigDjThree={this.bigDjThree} bigDjFour={this.bigDjFour}/>
 
         </div>
       )
